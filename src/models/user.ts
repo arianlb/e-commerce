@@ -11,7 +11,7 @@ const userSchema = new Schema<IUser>({
     name: { type: String, required: [true, 'Name is required'] },
     email: { type: String, required: [true, 'Email is required'], unique: true },
     password: { type: String, required: [true, 'Password is required'] },
-    roles: { type: [String], required: true, enum: ['ADMIN', 'EDITOR', 'USER'] }
+    roles: { type: [String], required: true, enum: ['ADMIN_ROLE', 'EDITOR_ROLE', 'USER_ROLE'] }
 });
 
 userSchema.methods.toJSON = function () {
