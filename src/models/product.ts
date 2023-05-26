@@ -7,7 +7,7 @@ interface IProduct {
     category: string;
     tags: string;
     description: string;
-    additionalInformation: string;
+    additionalInfo: string;
     starts: number;
     sku: string;
     picture: string;
@@ -21,7 +21,7 @@ const productSchema = new Schema<IProduct>({
     category: { type: String, required: [true, 'Category is required'] },
     tags: { type: String, required: [true, 'Tags is required'] },
     description: { type: String, required: [true, 'Description is required'] },
-    additionalInformation: { type: String },
+    additionalInfo: { type: String },
     starts: { type: Number, default: 5, min: 1, max: 5 },
     sku: { type: String, required: [true, 'SKU is required'], unique: true },
     picture: { type: String, required: [true, 'Picture is required'] },
