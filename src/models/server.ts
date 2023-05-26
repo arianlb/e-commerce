@@ -3,6 +3,8 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
 import dbConnection from '../database/connection';
+import productRoutes from '../routes/productRouter';
+import userRoutes from '../routes/userRouter';
 
 class Server {
     private app: Application;
@@ -14,6 +16,7 @@ class Server {
 
         this.connectDB();
         this.middlewares();
+        this.routes();
     }
 
     async connectDB() {
@@ -29,6 +32,11 @@ class Server {
             tempFileDir : '/tmp/',
             createParentPath: true
         }));
+    }
+
+    routes() { 
+        this.app.use('/api/products', productRoutes);
+        this.app.use('/api/users', userRoutes);
     }
 
     listen() { 
