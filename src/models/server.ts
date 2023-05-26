@@ -3,6 +3,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
 import dbConnection from '../database/connection';
+import loginRoutes from '../routes/loginRouter';
 import productRoutes from '../routes/productRouter';
 import userRoutes from '../routes/userRouter';
 
@@ -35,6 +36,7 @@ class Server {
     }
 
     routes() { 
+        this.app.use('/api/login', loginRoutes);
         this.app.use('/api/products', productRoutes);
         this.app.use('/api/users', userRoutes);
     }
