@@ -52,8 +52,12 @@ export const postUser = async (req: Request, res: Response) => {
 export const putUser = async (req: Request, res: Response) => { 
     try {
         const { _id, password, ...rest } = req.body;
-        const user = await User.findByIdAndUpdate(req.params.id, rest, { new: true });
-        res.status(204).json(user);
+        if (password) {
+            const encryptedPassword = bcryptjs.hashSync(password, bcryptjs.genSaltSync());
+            rest.password = encryptedPassword;
+        }
+        const user = await User.findByIdAndUpdate(req.params.id, rest, { returnDocument: 'after' });
+        res.json(user);
 
     } catch (error: any) {
         res.status(500).json({ msg: error.message });

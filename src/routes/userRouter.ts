@@ -10,7 +10,11 @@ import { getUser, getUsers, postUser, putUser, deleteUser } from "../controllers
 
 const router = Router();
 
-router.get('/', getUsers);
+router.get('/', [
+    validateToken,
+    hasAnyRole('ADMIN_ROLE'),
+    validate
+], getUsers);
 
 router.get('/:id', [
     validateToken,

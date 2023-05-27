@@ -5,7 +5,7 @@ interface IProduct {
     price: number;
     amountStock: number;
     category: string;
-    tags: string;
+    tags: string[];
     description: string;
     additionalInfo: string;
     starts: number;
@@ -19,7 +19,7 @@ const productSchema = new Schema<IProduct>({
     price: { type: Number, required: [true, 'Price is required'] },
     amountStock: { type: Number, default: 0, min: 0 },
     category: { type: String, required: [true, 'Category is required'] },
-    tags: { type: String, required: [true, 'Tags is required'] },
+    tags: { type: [String], required: [true, 'Tags is required'] },
     description: { type: String, required: [true, 'Description is required'] },
     additionalInfo: { type: String },
     starts: { type: Number, default: 5, min: 1, max: 5 },

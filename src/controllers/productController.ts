@@ -1,28 +1,19 @@
 import { Request, Response } from "express";
 
 import Product from "../models/product";
+import { generateQuery } from "../helpers/generateQuery";
 
 export const getProducts = async (req: Request, res: Response) => {
     try {
-        const {
-            limit = 10,
-            from = 0,
-            name,
-            price,
-            amountStock,
-            category,
-            tags,
-            description,
-            additionalInfo,
-            starts,
-            sku
-        } = req.query;
+        const page = Number(req.query.page) || 1;
+        const pageSize = 10;
+        const from = (page - 1) * pageSize;
 
-        const query = { name, price, amountStock, category, tags, description, additionalInfo, starts, sku };
-        
+        const query = generateQuery(req.query);
+                
         const [total, products] = await Promise.all([
             Product.countDocuments(query),
-            Product.find(query).skip(Number(from)).limit(Number(limit)),
+            Product.find(query).skip(from).limit(pageSize),
         ]);
 
         res.json({
@@ -49,21 +40,23 @@ export const getProduct = async (req: Request, res: Response) => {
     }
 }
 
+export const getProductBySku = async (req: Request, res: Response) => {
+    try {
+        const product = await Product.findOne({ sku: req.params.sku });
+        if (!product) {
+            return res.status(404).json({ msg: 'No existe el producto con el sku: ' + req.params.sku });
+        }
+
+        res.json(product);
+
+    } catch (error: any) {
+        res.status(500).json({ msg: error.message });
+    }
+}
+
 export const getProductAmount = async (req: Request, res: Response) => {
     try {
-        const {
-            name,
-            price,
-            amountStock,
-            category,
-            tags,
-            description,
-            additionalInfo,
-            starts,
-            sku
-        } = req.query;
-
-        const query = { name, price, amountStock, category, tags, description, additionalInfo, starts, sku };
+        const query = generateQuery(req.query);
         const total = await Product.countDocuments(query);
         res.json(total);
 
@@ -106,7 +99,8 @@ export const getProductsOutOfStock = async (req: Request, res: Response) => {
 export const postProduct = async (req: Request, res: Response) => {
     try {
         const { name, price, amountStock, category, tags, description, additionalInfo, starts, sku } = req.body;
-        const product = new Product({ name, price, amountStock, category, tags, description, additionalInfo, starts, sku });
+        const picture = 'No hay por ahora';
+        const product = new Product({ name, price, amountStock, category, tags, description, additionalInfo, starts, sku, picture });
         await product.save();
         res.status(201).json(product);
 
