@@ -4,7 +4,8 @@ import { check } from 'express-validator';
 import { validate } from "../middlewares/validateFields";
 import { validateToken } from "../middlewares/validateJWT";
 import { hasAnyRole } from "../middlewares/validateRole";
-import { productExists } from "../helpers/dbValidators";
+import { validateImage, validateUpload } from "../middlewares/validateFile";
+import { productExistsBySku } from "../helpers/dbValidators";
 
 import {
     getProduct,
@@ -17,7 +18,8 @@ import {
     postProduct,
     putProduct,
     deleteProduct,
-    sellProduct
+    sellProduct,
+    updatePicture
 } from "../controllers/productController";
 
 const router = Router();
@@ -63,6 +65,7 @@ router.post('/', [
     check('tags', 'Los tags son obligatorios').not().isEmpty(),
     check('description', 'La descripción es obligatoria').not().isEmpty(),
     check('sku', 'El sku es obligatorio').not().isEmpty(),
+    check('sku').custom(productExistsBySku),
     validate
 ], postProduct);
 
@@ -77,7 +80,6 @@ router.delete('/:id', [
     validateToken,
     hasAnyRole('ADMIN_ROLE', 'EDITOR_ROLE'),
     check('id', 'No es un id válido').isMongoId(),
-    check('id').custom(productExists),
     validate
 ], deleteProduct);
 
@@ -86,5 +88,14 @@ router.put('/sell/:id', [
     check('id', 'No es un id válido').isMongoId(),
     validate
 ], sellProduct);
+
+router.post('/picture/:id', [
+    validateToken,
+    hasAnyRole('ADMIN_ROLE', 'EDITOR_ROLE'),
+    validateUpload,
+    validateImage,
+    check('id', 'No es un id válido').isMongoId(),
+    validate
+], updatePicture);
 
 export default router;

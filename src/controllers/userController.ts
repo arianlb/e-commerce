@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import bcryptjs from "bcryptjs";
 
 import User from "../models/user";
 
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { limit = 10, from = 0 } = req.query;
         
@@ -18,11 +18,11 @@ export const getUsers = async (req: Request, res: Response) => {
         });
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }
 
-export const getUser = async (req: Request, res: Response) => { 
+export const getUser = async (req: Request, res: Response, next: NextFunction) => { 
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -32,11 +32,11 @@ export const getUser = async (req: Request, res: Response) => {
         res.json(user);
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }
 
-export const postUser = async (req: Request, res: Response) => { 
+export const postUser = async (req: Request, res: Response, next: NextFunction) => { 
     try {
         const { name, email, password, roles } = req.body;
         const encryptedPassword = bcryptjs.hashSync(password, bcryptjs.genSaltSync());
@@ -45,11 +45,11 @@ export const postUser = async (req: Request, res: Response) => {
         res.status(201).json(user);
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }
 
-export const putUser = async (req: Request, res: Response) => { 
+export const putUser = async (req: Request, res: Response, next: NextFunction) => { 
     try {
         const { _id, password, ...rest } = req.body;
         if (password) {
@@ -60,16 +60,16 @@ export const putUser = async (req: Request, res: Response) => {
         res.json(user);
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }
 
-export const deleteUser = async (req: Request, res: Response) => { 
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => { 
     try {
         await User.findByIdAndDelete(req.params.id);
         res.status(204).json({ msg: 'Usuario eliminado' });
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }

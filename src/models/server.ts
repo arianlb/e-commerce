@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
@@ -18,6 +18,7 @@ class Server {
         this.connectDB();
         this.middlewares();
         this.routes();
+        this.errorHandler();
     }
 
     async connectDB() {
@@ -28,6 +29,7 @@ class Server {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.static('public'));
+        this.app.use(express.static('uploads'));
         this.app.use(fileUpload({
             useTempFiles : true,
             tempFileDir : '/tmp/',
@@ -39,6 +41,14 @@ class Server {
         this.app.use('/api/login', loginRoutes);
         this.app.use('/api/products', productRoutes);
         this.app.use('/api/users', userRoutes);
+    }
+
+    errorHandler() {
+        this.app.use( (err: Error, req: Request, res: Response, next: NextFunction) => {
+            res.status(500).json({ msg: err.message });
+            console.error('Error en: ' + req.originalUrl + ' - ' + req.method);
+            console.error(err.message);
+        });
     }
 
     listen() { 

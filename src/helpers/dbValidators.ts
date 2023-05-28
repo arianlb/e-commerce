@@ -22,6 +22,13 @@ export const productExists = async (id: string) => {
     }
 }
 
+export const productExistsBySku = async (sku: string) => {
+    const product = await Product.findOne({sku});
+    if (product) {
+        throw new Error(`El producto con el sku ${sku} ya existe en la BD`);
+    }
+}
+
 export const areValidRoles = async (roles: string[]) => {
     const validRoles = ['ADMIN_ROLE', 'EDITOR_ROLE', 'USER_ROLE'];
     for (const role of roles) {

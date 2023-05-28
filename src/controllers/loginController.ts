@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import bcryptjs from "bcryptjs";
 
 import User from '../models/user';
 import { jwt } from "../helpers/generateJWT";
 
-export const login = async (req: Request, res: Response) => { 
+export const login = async (req: Request, res: Response, next: NextFunction) => { 
     try {
         const { email, password } = req.body;
         let user = await User.findOne({ email });
@@ -34,11 +34,16 @@ export const login = async (req: Request, res: Response) => {
         res.json({ user, token });
 
     } catch (error: any) {
-        res.status(500).json({ msg: error.message });
+        next(error);
     }
 }
 
-export const renewToken = async (req: Request, res: Response) => {
-    const token = await jwt(req.query.authUserId!.toString());
-    res.json(token);
+export const renewToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const token = await jwt(req.query.authUserId!.toString());
+        res.json(token);
+        
+    } catch (error: any) {
+        next(error);
+    }
 }
