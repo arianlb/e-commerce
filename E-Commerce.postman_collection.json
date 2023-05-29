@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "b55378ac-fb26-4ee4-847e-b280c822bc27",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Obtener Usuarios",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxMzkyMjUsImV4cCI6MTY4NTE0MTAyNX0.D1uP5E2cYjG47d4z4a4XpXxms_oi90RxkRP0zTVCuTY",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un Usuario",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxMzkyMjUsImV4cCI6MTY4NTE0MTAyNX0.D1uP5E2cYjG47d4z4a4XpXxms_oi90RxkRP0zTVCuTY",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pepe\",\r\n    \"email\": \"pepe@gmail.com\",\r\n    \"password\": \"pepe\",\r\n    \"roles\": [\"USER_ROLE\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar un Usuario",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDAxOTYsImV4cCI6MTY4NTE0MTk5Nn0.kW0g7rCAZLxHLuEUUP8c8B2Sd1iCxHpRs_zClszBaFs",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roles\": [\"USER_ROLE\", \"EDITOR_ROLE\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/6471312bc949c25977a70bfe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6471312bc949c25977a70bfe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un Usuario",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDI0MDgsImV4cCI6MTY4NTE0NDIwOH0.PdBINwzCGcoEGqfKD9ajQ8sqWjPHGdC0am7sm3pSrwE",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/64713be30306f40592843066",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"64713be30306f40592843066"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un Usuario",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUzNDIwMTksImV4cCI6MTY4NTM0MzgxOX0.FTC_vd3botZR6FBKDbQyUiQLSuwDmVGQMT6QKczLhQI",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/64712f19b29160eeb3020460",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"64712f19b29160eeb3020460"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Crear un Producto",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDU1NDIsImV4cCI6MTY4NTE0NzM0Mn0.FNVlHrC5ogkyriA3pVchVb-vPqftbBOBVa_guER5Peo",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"iPhone 14\",\r\n    \"price\": 999.99,\r\n    \"amountStock\": 100,\r\n    \"category\": \"Electrónica\",\r\n    \"tags\": [\"Teléfono\", \"Apple\", \"iOS\"],\r\n    \"description\": \"El iPhone 14 es el último teléfono inteligente de Apple con una pantalla OLED de 6.1 pulgadas y una cámara trasera de triple lente.\",\r\n    \"additionalInfo\": \"Capacidad de almacenamiento: 128 GB\",\r\n    \"starts\": 4.8,\r\n    \"sku\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un Producto por su SKU",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/sku/123456783",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"sku",
+								"123456783"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener lista de Productos vendidos",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUzMzIyMzgsImV4cCI6MTY4NTMzNDAzOH0.Bse_fDNbhyb1Flim7LyA9z22-1iBIh5DlctLa-Bz-o8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/list/sold",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"list",
+								"sold"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener el total de ganancia",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDc2MzgsImV4cCI6MTY4NTE0OTQzOH0.BnZoDj8_eEKBNWIVG2FDoDgD4okHcKl83prBXR7vQyU",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/total/profit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"total",
+								"profit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener los Productos sin stock",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDc2MzgsImV4cCI6MTY4NTE0OTQzOH0.BnZoDj8_eEKBNWIVG2FDoDgD4okHcKl83prBXR7vQyU",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/out-of/stock",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"out-of",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Productos con criterios de busqueda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products?page=1&category=Electrónica&starts=4.5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "iPhone 14",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Electrónica"
+								},
+								{
+									"key": "tags",
+									"value": "Algodón",
+									"disabled": true
+								},
+								{
+									"key": "starts",
+									"value": "4.5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener cantidad de Productos con criterios de busqueda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/quantity/these?category=Electrónica&starts=4.5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"quantity",
+								"these"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Electrónica"
+								},
+								{
+									"key": "starts",
+									"value": "4.5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vender un Producto",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNzk1OTAsImV4cCI6MTY4NTE4MTM5MH0.fD33gAQJVVt0KlgmIUDWvZiYSW0duzDrSluSWL2AanI",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/sell/64714b8c702aef2699580c42",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"sell",
+								"64714b8c702aef2699580c42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un Producto",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUyMjI4NzAsImV4cCI6MTY4NTIyNDY3MH0.sc12D0hp6kUq_tT5YkxYROnp_MdoGByhhOSaL6xpySQ",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/64727719c544efdcb352b906",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"64727719c544efdcb352b906"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Poner o Actualizar la imagen de un Producto",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUyMjM2MTUsImV4cCI6MTY4NTIyNTQxNX0.3JfyG1h1wVCv0K1VUkBakrvTLqgjAWuJbBKKkE0br_0",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AriaN/Pictures/Screenshot_20211212-215226_Messenger.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/products/picture/64727609e33c57a61860e2b7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"picture",
+								"64727609e33c57a61860e2b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar un Producto",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUzMzY2ODcsImV4cCI6MTY4NTMzODQ4N30.sgkcNbYlju5bbkAfUdIA76ckMnAE2uZqvI6cIYjedEc",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"iPhone 13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products/64727609e33c57a61860e2b7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"64727609e33c57a61860e2b7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"superuser@admin.com\",\r\n    \"password\": \"superuser\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Renovar Token",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcxMmYxOWIyOTE2MGVlYjMwMjA0NjAiLCJpYXQiOjE2ODUxNDAxOTYsImV4cCI6MTY4NTE0MTk5Nn0.kW0g7rCAZLxHLuEUUP8c8B2Sd1iCxHpRs_zClszBaFs",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/login/renew",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login",
+						"renew"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -11,14 +11,9 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         if (!user) {
 
             //Codigo solo de prueba para crear un usuario al iniciar la bd por primera vez
-            if (email === 'superuser@admin.com' && password === 'superuser') { 
-                user = new User({
-                    name: 'Super User',
-                    email: 'superuser@admin.com',
-                    password: bcryptjs.hashSync('superuser', bcryptjs.genSaltSync()),
-                    roles: ['ADMIN_ROLE']
-                });
-                await user.save();
+            if ((email === 'superuser@admin.com' && password === 'superuser') ||
+                (email === 'testuser@admin.com' && password === 'testuser')) { 
+                user = await createTestUsers(email, password);
                 
             } else {
                 return res.status(400).json({ msg: 'Usuario o Contraseña incorrecta' });
@@ -41,9 +36,22 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 export const renewToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = await jwt(req.query.authUserId!.toString());
-        res.json(token);
+        res.json({token});
         
     } catch (error: any) {
         next(error);
     }
+}
+
+const createTestUsers = async (email: string, password: string) => {
+    const name = email.split('@')[0] === 'superuser' ? 'Test AdminUser' : 'Test User';
+    const role = email.split('@')[0] === 'superuser' ? 'ADMIN_ROLE' : 'USER_ROLE';
+    const user = new User({
+        name,
+        email,
+        password: bcryptjs.hashSync(password, bcryptjs.genSaltSync()),
+        roles: [role]
+    });
+    await user.save();
+    return user;
 }

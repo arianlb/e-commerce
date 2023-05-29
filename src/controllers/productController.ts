@@ -59,7 +59,7 @@ export const getProductAmount = async (req: Request, res: Response, next: NextFu
     try {
         const query = generateQuery(req.query);
         const total = await Product.countDocuments(query);
-        res.json(total);
+        res.json({total});
 
     } catch (error: any) {
         next(error);
@@ -69,7 +69,8 @@ export const getProductAmount = async (req: Request, res: Response, next: NextFu
 export const getProductsSold = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const products = await Product.find({ amountSold: { $gte: 1 } });
-        res.json(products);
+        const productsWithAmountSold = products.map(product => ({ product, amountSold: product.amountSold }));
+        res.json(productsWithAmountSold);
 
     } catch (error: any) {
         next(error);
@@ -80,7 +81,7 @@ export const getFullProfit = async (req: Request, res: Response, next: NextFunct
     try {
         const products = await Product.find({ amountSold: { $gte: 1 } });
         const profit = products.reduce((acc, product) => acc + (product.price * product.amountSold), 0);
-        res.json(profit);
+        res.json({profit});
 
     } catch (error: any) {
         next(error);

@@ -5,7 +5,7 @@ import { validate } from "../middlewares/validateFields";
 import { validateToken } from "../middlewares/validateJWT";
 import { hasAnyRole } from "../middlewares/validateRole";
 import { validateImage, validateUpload } from "../middlewares/validateFile";
-import { productExistsBySku } from "../helpers/dbValidators";
+import { productExists, productExistsBySku } from "../helpers/dbValidators";
 
 import {
     getProduct,
@@ -31,10 +31,7 @@ router.get('/:id', [
     validate
 ], getProduct);
 
-router.get('/sku/:sku', [
-    check('sku', 'El sku es obligatorio').not().isEmpty(),
-    validate
-], getProductBySku);
+router.get('/sku/:sku', getProductBySku);
 
 router.get('/quantity/these', getProductAmount);
 
@@ -73,6 +70,7 @@ router.put('/:id', [
     validateToken,
     hasAnyRole('ADMIN_ROLE', 'EDITOR_ROLE'),
     check('id', 'No es un id válido').isMongoId(),
+    check('id').custom(productExists),
     validate
 ], putProduct);
 
